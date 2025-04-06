@@ -16,12 +16,9 @@ namespace TestADRES.Infrastructure
                 options.UseSqlServer(configuration.GetConnectionString("Database")));
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            // generic Base
-            //services.AddScoped(typeof(IAsyncRepository<>), typeof(RepositoryBase<>));
 
-            //services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-            //services.AddScoped<IPermissionTypeRepository, PermissionTypeRepository>();
-            //services.AddScoped<IPermissionRepository, PermissionRepository>();
+            // generic Base
+            services.AddScoped(typeof(IAsyncRepository<>), typeof(RepositoryBase<>));
 
             return services;
         }

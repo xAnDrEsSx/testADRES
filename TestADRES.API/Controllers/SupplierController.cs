@@ -3,7 +3,6 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using TestADRES.Application.Features.Suppliers.Queries.GetAllSuppliers;
-using TestADRES.Domain.Entities;
 
 namespace TestADRES.API.Controllers
 {
@@ -19,12 +18,11 @@ namespace TestADRES.API.Controllers
         }
 
         [HttpGet(Name = "GetAllSuppliers")]
-        [ProducesResponseType(typeof(Response<List<Supplier>>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Response<List<Supplier>>>> GetAllSuppliers()
+        [ProducesResponseType(typeof(Response<List<SuppliersVm>>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response<List<SuppliersVm>>>> GetAllSuppliers()
         {
             return Ok(await mediator.Send(new GetAllSuppliersQuery()));
         }
-
 
     }
 }

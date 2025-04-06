@@ -11,9 +11,12 @@ namespace TestADRES.Infrastructure.Repositories
         private Hashtable _repositories;
         private readonly TestDbContext _context;
         private ISupplierRepository supplierRepository;
+        private IBusinessUnitRepository businessUnitRepository;
+        private IRequirementStatusRepository requirementStatusRepository;
 
         public ISupplierRepository SupplierRepository => supplierRepository ??= new SupplierRepository(_context);
-
+        public IBusinessUnitRepository BusinessUnitRepository => businessUnitRepository ??= new BusinessUnitRepository(_context);
+        public IRequirementStatusRepository RequirementStatusRepository => requirementStatusRepository ??= new RequirementStatusRepository(_context);
 
 
         public UnitOfWork(TestDbContext context)

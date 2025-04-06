@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
-using TestADRES.Application.Common.TestADRES.Application.Common;
+using TestADRES.Application.Common;
 using TestADRES.Application.Contracts.Persistence;
 using TestADRES.Application.Wrappers;
 
