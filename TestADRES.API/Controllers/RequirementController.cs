@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using TestADRES.Application.Features.Requirements.Commands.CreateRequirement;
+using TestADRES.Application.Features.Requirements.Commands.DeleteRequirement;
 using TestADRES.Application.Features.Requirements.Commands.UpdateRequirement;
 using TestADRES.Application.Features.Requirements.Queries.GetAllRequirement;
 using TestADRES.Application.Features.Requirements.Queries.GetRequirementById;
@@ -53,6 +54,15 @@ namespace TestADRES.API.Controllers
             }
             var result = await mediator.Send(command);
             return Ok(result);
+        }
+
+        [HttpDelete("{id}", Name = "DeleteRequirement")]
+        [ProducesResponseType(typeof(Response<bool>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response<bool>>> DeleteRequirement(Guid id)
+        {
+            var command = new DeleteRequirementCommand { RequirementId = id };
+            var response = await mediator.Send(command);
+            return Ok(response);
         }
 
 
