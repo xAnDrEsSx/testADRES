@@ -106,6 +106,13 @@ namespace TestADRES.Infrastructure.Repositories
         {
             context.Set<T>().Remove(entity);
         }
+
+        public async Task AddRangeAsync(IEnumerable<T> entities)
+        {
+            await context.Set<T>().AddRangeAsync(entities);
+            await context.SaveChangesAsync();
+        }
+
     }
 
 }
