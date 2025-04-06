@@ -6,7 +6,7 @@ namespace TestADRES.Application.Contracts.Persistence
     {
         IAsyncRepository<TEntity> Repository<TEntity>() where TEntity : BaseDomainModel;
         Task<int> Complete();
-
+        ISupplierRepository SupplierRepository { get; }
     }
 
 }

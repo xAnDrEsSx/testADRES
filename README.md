@@ -21,9 +21,18 @@ El proyecto está dividido en las siguientes partes:
 
 ## Pasos para ejecutar el proyecto
 
+
+### Comandos Para Ejecutar Migracion - ejecutar migracion en curso
+ 1. cd TestADRES.Infrastructure
+ 2. dotnet ef database update --startup-project ../TestADRES.API
+
+
+
 ### 1. Clonar el repositorio
 
 Clona el repositorio a tu máquina local:
 
 ```bash
 git clone https://github.com/yourusername/TestADRES.git
+
+

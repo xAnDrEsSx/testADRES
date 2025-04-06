@@ -1,6 +1,5 @@
 using TestADRES.Application;
 using TestADRES.Infrastructure;
-using TestADRES.Infrastructure.Persistence;
 
 internal class Program
 {
