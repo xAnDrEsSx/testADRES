@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using TestADRES.Application.Common;
+using TestADRES.Application.Common.enums;
 using TestADRES.Application.Contracts.Persistence;
 using TestADRES.Application.Wrappers;
 
@@ -30,9 +31,8 @@ namespace TestADRES.Application.Features.Requirements.Queries.GetAllRequirement
 
                 var requirementsList = new List<GetAllRequirementVm>();
 
-                foreach (var requirement in requirements)
+                foreach (var requirement in requirements.Where(r => r.RequirementStatusId == (int)RequirementStatusEnum.Activo).OrderByDescending(o => o.CreatedDate))
                 {
-
                     requirementsList.Add(new GetAllRequirementVm()
                     {
                         RequerimentId = requirement.Id,
@@ -40,7 +40,6 @@ namespace TestADRES.Application.Features.Requirements.Queries.GetAllRequirement
                         ItemtName = requirement.ItemType.Trim(),
                         TotalValue = requirement.UnitValue * requirement.Quantity,
                         UnitName = unitOfWork.BusinessUnitRepository.GetByIdAsync(requirement.BusinessUnitId).Result.Name.Trim(),
-                        
                     });
                 };
 

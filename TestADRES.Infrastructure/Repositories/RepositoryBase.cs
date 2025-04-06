@@ -44,6 +44,19 @@ namespace TestADRES.Infrastructure.Repositories
             return await query.ToListAsync();
         }
 
+        public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate)
+        {
+            IQueryable<T> query = context.Set<T>().AsQueryable();
+
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
+            }
+
+            return await query.ToListAsync();
+        }
+
+
 
         public virtual async Task<T> GetByIdAsync(int id)
         {
@@ -73,12 +86,6 @@ namespace TestADRES.Infrastructure.Repositories
         }
 
         public Task<T> DeleteAsync(T entity)
-        {
-            throw new NotImplementedException();
-        }
-
-
-        public Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate)
         {
             throw new NotImplementedException();
         }

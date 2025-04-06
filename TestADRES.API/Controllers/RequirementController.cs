@@ -5,6 +5,7 @@ using TestADRES.Application.Features.Requirements.Commands.CreateRequirement;
 using TestADRES.Application.Features.Requirements.Commands.DeleteRequirement;
 using TestADRES.Application.Features.Requirements.Commands.UpdateRequirement;
 using TestADRES.Application.Features.Requirements.Queries.GetAllRequirement;
+using TestADRES.Application.Features.Requirements.Queries.GetFilteredRequirements;
 using TestADRES.Application.Features.Requirements.Queries.GetRequirementById;
 using TestADRES.Application.Wrappers;
 
@@ -29,6 +30,14 @@ namespace TestADRES.API.Controllers
             return await mediator.Send(command);
         }
 
+        [HttpPost("filter")]
+        [ProducesResponseType(typeof(Response<List<GetAllRequirementVm>>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response<List<GetAllRequirementVm>>>> GetFilteredRequirements([FromBody] GetFilteredRequirementsQuery query)
+        {
+            return Ok(await mediator.Send(query));
+        }
+
+
         [HttpGet(Name = "GetAllRequirements")]
         [ProducesResponseType(typeof(Response<List<GetAllRequirementVm>>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<Response<List<GetAllRequirementVm>>>> GetAllRequirements()
@@ -37,7 +46,7 @@ namespace TestADRES.API.Controllers
         }
 
 
-        [HttpGet("{Id}" , Name = "GetRequirementById")]
+        [HttpGet("{Id}", Name = "GetRequirementById")]
         [ProducesResponseType(typeof(Response<GetRequirementByIdVm>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<Response<GetRequirementByIdVm>>> GetRequirementById(string Id)
         {
