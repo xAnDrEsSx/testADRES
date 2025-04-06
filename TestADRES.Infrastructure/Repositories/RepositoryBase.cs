@@ -51,6 +51,13 @@ namespace TestADRES.Infrastructure.Repositories
             return entity == null ? throw new KeyNotFoundException($"Entity with id {id} not found.") : entity;
         }
 
+        public virtual async Task<T> GetByIdAsync(Guid id)
+        {
+            var entity = await context.Set<T>().FindAsync(id);
+            return entity == null ? throw new KeyNotFoundException($"Entity with id {id} not found.") : entity;
+        }
+
+
         public async Task<T> AddAsync(T entity)
         {
             context.Set<T>().Add(entity);

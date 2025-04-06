@@ -1,4 +1,7 @@
+using FluentValidation;
+using TestADRES.API.Middleware;
 using TestADRES.Application;
+using TestADRES.Application.Features.Requirements.Commands.CreateRequirement;
 using TestADRES.Infrastructure;
 
 internal class Program
@@ -17,6 +20,15 @@ internal class Program
         builder.Services.AddInfraestructuraServices(builder.Configuration);
         builder.Services.AddAplicationServices();
 
+        builder.Services.AddValidatorsFromAssemblyContaining<CreateRequirementCommandValidator>();
+
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("CorsPolicy", builder => builder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+        });
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
@@ -26,9 +38,13 @@ internal class Program
             app.UseSwaggerUI();
         }
 
+        app.UseMiddleware<ExceptionMiddleware>();
+
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
+
+        app.UseCors("CorsPolicy");
 
         app.MapControllers();
 

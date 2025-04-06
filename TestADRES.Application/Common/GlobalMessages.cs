@@ -2,6 +2,10 @@
 {
     public static class GlobalMessages
     {
+
+        // Mensajes Exceptions
+        public static string ValidationExceptionMessage => "Se presentaron uno o mas errores de validacion.";
+
         // Mensajes de éxito
         public static string SuppliersRetrievedSuccessfully => "Suppliers retrieved successfully.";
         public static string BusinessUnitsRetrievedSuccessfully => "Business units retrieved successfully.";
@@ -20,5 +24,14 @@
 
         public static string ErrorRetrievingRequirementStatuses(string errorMessage) =>
             $"An error occurred while retrieving requirement statuses: {errorMessage}";
+
+        // Mensajes de validación
+        public static string GuidValidationMessage(string fieldName) => $"{fieldName} must be a valid GUID.";
+        public static string ValidGuidMessage(string fieldName) => $"{fieldName} must be a valid GUID.";
+        public static string NotEmptyMessage(string fieldName) => $"{fieldName} cannot be empty.";
+        public static string NotNullMessage(string fieldName) => $"{fieldName} cannot be null.";
+        public static string GreaterThanZeroMessage(string fieldName) => $"{fieldName} must be greater than zero.";
+        public static string MinLengthMessage(string fieldName, int length) => $"{fieldName} must be at least {length} characters long.";
+        public static string ValidDateMessage(string fieldName) => $"{fieldName} cannot be a future date.";
     }
 }

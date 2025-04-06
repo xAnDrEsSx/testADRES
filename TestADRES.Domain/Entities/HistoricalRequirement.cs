@@ -33,7 +33,7 @@ namespace TestADRES.Domain.Entities
         [Column("change_date")]
         public DateTime ChangeDate { get; set; }
 
-        public virtual Requirement Requirement { get; set; } = new Requirement();
-        public virtual User User { get; set; } = new User();
+        public virtual Requirement? Requirement { get; set; }
+        public virtual User? User { get; set; }
     }
 }

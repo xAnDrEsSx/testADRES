@@ -18,8 +18,8 @@ namespace TestADRES.API.Controllers
         }
 
         [HttpGet(Name = "GetAllSuppliers")]
-        [ProducesResponseType(typeof(Response<List<SuppliersVm>>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Response<List<SuppliersVm>>>> GetAllSuppliers()
+        [ProducesResponseType(typeof(IEnumerable<SuppliersVm>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<IEnumerable<SuppliersVm>>> GetAllSuppliers()
         {
             return Ok(await mediator.Send(new GetAllSuppliersQuery()));
         }

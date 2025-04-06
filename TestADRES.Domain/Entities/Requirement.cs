@@ -59,15 +59,15 @@ namespace TestADRES.Domain.Entities
         public Guid CreatedByUserId { get; set; }
 
         [Comment("Navigation property to the supplier related to this requirement")]
-        public virtual Supplier Supplier { get; set; } = new Supplier();
+        public virtual Supplier? Supplier { get; set; }
 
         [Comment("Navigation property to the status of the requirement")]
-        public virtual RequirementStatus RequirementStatus { get; set; } = new RequirementStatus();
+        public virtual RequirementStatus? RequirementStatus { get; set; }
 
         [Comment("Navigation property to the user who created this requirement")]
-        public virtual User User { get; set; } = new User();
+        public virtual User? User { get; set; }
 
         [Comment("Navigation property to the business unit associated with this requirement")]
-        public virtual BusinessUnit BusinessUnit { get; set; } = new BusinessUnit();
+        public virtual BusinessUnit? BusinessUnit { get; set; }
     }
 }
