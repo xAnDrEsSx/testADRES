@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using TestADRES.Application.Features.Requirements.Commands.CreateRequirement;
+using TestADRES.Application.Features.Requirements.Commands.UpdateRequirement;
 using TestADRES.Application.Features.Requirements.Queries.GetAllRequirement;
 using TestADRES.Application.Features.Requirements.Queries.GetRequirementById;
-using TestADRES.Application.Features.RequirementStatuses.Queries.GetAllRequirementStatuses;
 using TestADRES.Application.Wrappers;
 
 namespace TestADRES.API.Controllers
@@ -42,6 +42,19 @@ namespace TestADRES.API.Controllers
         {
             return Ok(await mediator.Send(new GetRequirementByIdQuery(Id)));
         }
+
+        [HttpPatch(Name = "UpdateRequirement")]
+        [ProducesResponseType(typeof(Response<bool>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response<bool>>> UpdateRequirement([FromBody] UpdateRequirementCommand command)
+        {
+            if (!Guid.TryParse(command.RequirementId.ToString(), out var requirementId))
+            {
+                return BadRequest(new Response<bool>("Invalid GUID for requirement id."));
+            }
+            var result = await mediator.Send(command);
+            return Ok(result);
+        }
+
 
 
     }
