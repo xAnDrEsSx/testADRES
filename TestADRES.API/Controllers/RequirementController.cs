@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using TestADRES.Application.Features.Requirements.Commands.CreateRequirement;
 using TestADRES.Application.Features.Requirements.Queries.GetAllRequirement;
+using TestADRES.Application.Features.Requirements.Queries.GetRequirementById;
 using TestADRES.Application.Features.RequirementStatuses.Queries.GetAllRequirementStatuses;
 using TestADRES.Application.Wrappers;
 
@@ -33,6 +34,15 @@ namespace TestADRES.API.Controllers
         {
             return Ok(await mediator.Send(new GetAllRequirementQuery()));
         }
+
+
+        [HttpGet("{Id}" , Name = "GetRequirementById")]
+        [ProducesResponseType(typeof(Response<GetRequirementByIdVm>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response<GetRequirementByIdVm>>> GetRequirementById(string Id)
+        {
+            return Ok(await mediator.Send(new GetRequirementByIdQuery(Id)));
+        }
+
 
     }
 }

@@ -13,6 +13,8 @@ namespace TestADRES.Application.Mappings
         {
             CreateMap<Supplier, SuppliersVm>();
             CreateMap<BusinessUnit, BusinessUnitsVm>();
+            CreateMap<SuppliersVm, Supplier>();
+            CreateMap<BusinessUnitsVm, BusinessUnit>();
             CreateMap<RequirementStatus, RequirementStatusesVm>();
             CreateMap<CreateRequirementCommand, Requirement>();
         }
