@@ -27,8 +27,10 @@ namespace TestADRES.Application.Features.Requirements.Queries.GetFilteredRequire
             {
                 Expression<Func<Requirement, bool>> predicate = r => true;
 
-                if (request.SupplierId.HasValue)
-                    predicate = predicate.AndAlso(r => r.SupplierId == request.SupplierId.Value);
+                if (!string.IsNullOrEmpty(request.SupplierId?.ToString()) && Guid.TryParse(request.SupplierId.ToString(), out Guid supplierId))
+                {
+                    predicate = predicate.AndAlso(r => r.SupplierId == supplierId);
+                }
 
                 if (request.BusinessUnitId.HasValue && request.BusinessUnitId.Value > 0)
                     predicate = predicate.AndAlso(r => r.BusinessUnitId == request.BusinessUnitId.Value);
