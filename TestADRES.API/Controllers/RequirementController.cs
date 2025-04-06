@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using TestADRES.Application.Features.Requirements.Commands.CreateRequirement;
+using TestADRES.Application.Features.Requirements.Queries.GetAllRequirement;
+using TestADRES.Application.Features.RequirementStatuses.Queries.GetAllRequirementStatuses;
 using TestADRES.Application.Wrappers;
 
 namespace TestADRES.API.Controllers
@@ -23,6 +25,13 @@ namespace TestADRES.API.Controllers
         public async Task<ActionResult<Response<Guid>>> CreateRequeriment([FromBody] CreateRequirementCommand command)
         {
             return await mediator.Send(command);
+        }
+
+        [HttpGet(Name = "GetAllRequirements")]
+        [ProducesResponseType(typeof(Response<List<GetAllRequirementVm>>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Response<List<GetAllRequirementVm>>>> GetAllRequirements()
+        {
+            return Ok(await mediator.Send(new GetAllRequirementQuery()));
         }
 
     }

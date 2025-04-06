@@ -19,8 +19,4 @@
     <ProjectReference Include="..\TestADRES.Domain\TestADRES.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Requirements\Queries\" />
-  </ItemGroup>
-
 </Project>
