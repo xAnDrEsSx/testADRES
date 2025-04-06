@@ -13,10 +13,15 @@ namespace TestADRES.Infrastructure.Repositories
         private ISupplierRepository supplierRepository;
         private IBusinessUnitRepository businessUnitRepository;
         private IRequirementStatusRepository requirementStatusRepository;
+        private IRequirementRepository requirementRepository;
+        private IHistoricalRequirementRepository historicalRequirementRepository;
+
 
         public ISupplierRepository SupplierRepository => supplierRepository ??= new SupplierRepository(_context);
         public IBusinessUnitRepository BusinessUnitRepository => businessUnitRepository ??= new BusinessUnitRepository(_context);
         public IRequirementStatusRepository RequirementStatusRepository => requirementStatusRepository ??= new RequirementStatusRepository(_context);
+        public IRequirementRepository RequirementRepository => requirementRepository ??= new RequirementRepository(_context);
+        public IHistoricalRequirementRepository HistoricalRequirementRepository => historicalRequirementRepository ??= new HistoricalRequirementRepository(_context);
 
 
         public UnitOfWork(TestDbContext context)

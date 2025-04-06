@@ -9,6 +9,8 @@ namespace TestADRES.Application.Contracts.Persistence
         ISupplierRepository SupplierRepository { get; }
         IBusinessUnitRepository BusinessUnitRepository { get; }
         IRequirementStatusRepository RequirementStatusRepository { get; }
+        IRequirementRepository RequirementRepository { get; }
+        IHistoricalRequirementRepository HistoricalRequirementRepository { get; }
     }
 
 }
